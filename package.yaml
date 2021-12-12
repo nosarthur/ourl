@@ -1,10 +1,10 @@
 name:                ourl
 version:             0.1.0.0
-github:              "githubuser/ourl"
+github:              "nosarthur/ourl"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2021 Author name here"
+author:              "Dong Zhou"
+maintainer:          "zhou.dong@gmail.com"
+copyright:           "2021 Dong Zhou"
 
 extra-source-files:
 - README.md
@@ -17,23 +17,28 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/ourl#readme>
+description:         Please see the README on GitHub at <https://github.com/nosarthur/ourl#readme>
 
 dependencies:
 - base >= 4.7 && < 5
 
 library:
   source-dirs: src
+  ghc-options:
+    - -Wall
+    - -Werror
 
 executables:
-  ourl-exe:
+  ourl:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -O
     dependencies:
+    - optparse-applicative
     - ourl
 
 tests:

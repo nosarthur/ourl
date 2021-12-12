@@ -1,25 +1,31 @@
-# ourl
+# ourl: generate Opengrok/Github URL by grepping and finding source code repo
 
-Generate Opengrok URL by grepping source repo
+Source code hosting sites like [Opengrok](https://en.wikipedia.org/wiki/OpenGrok)
+and [Github](https://en.wikipedia.org/wiki/GitHub) are useful to communicate a
+specific location to a colleague.
+However, navigating on the web is not as convenient as `grep`ping and
+`find`ing in the terminal (or `rg`ing and `fd`ing).
 
-The opengrok page is slow to load and it is a pain to search for a file,
-a function, or a class. As a result, I only search inside local repo.
-However, it's more convenient to reference code on opengrok when communicating
-with a colleague.
-Thus I created this tool.
+Thus we have this tool `ourl`.
 
 Usage:
 ```
-ourl [-r partial-repo-name] <file-name|function-name|class-name>
+ourl [-r partial-repo-name] <search-keywords>
 ```
+And the matched URL(s) will be printed.
 
-The corresponding opengrok URL(s) will be printed.
+For example, we can look for file name, function name, class name.
+```
+ourl -r my-repo analysis.py
+ourl -r a-repo "def some_function"
+ourl "class MyClass"
+```
 
 
 ## rationale
 
-At least for the opengrok I use, there is a simple correspondence between the
-URL and repo file structure
+The hosting sites should have a simple correspondence between the
+URL and repo file structure. For example,
 ```
 https://opengrok-site-name/xref/repo-name/path/to/the/file
   |
@@ -38,4 +44,11 @@ and assemble the URL accordingly.
   - csv file with repo names and repo paths
   - `grep` and `find` alternatives
 
+## misc
 
+We could also add a sub-command `config`
+
+```
+ourl config repos
+ourl config cmds
+```
